@@ -3,10 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+==========================================
 Maiduo HTTPAPI's documentation!
 ==========================================
 
-.. http:post:: /api/aps/device/
+/aps/device/
+------------
+
+.. http:post:: /aps/device/
 
    注册设备，在didRegisterForRemoteNotificationsWithDeviceToken中注册Token
    如果Token更改或者第一次启动应用。
@@ -39,22 +43,104 @@ Maiduo HTTPAPI's documentation!
    :form token: iOS设备的Token。
    :statuscode: 201
 
-.. http:post:: /api/aps/push/
+/aps/push/
+-----------
 
-   推送通知到iOS设备
+.. http:post:: /aps/push/
+
+  推送消息到iOS设备。
+
+  官方专用API，需要发送Base-Auth验证有权限的账号。
 
   :form tokens: 设备Token - 逗号分隔多个Token，token1,token2。
   :form message: 推送消息内容。
   :form badge: 推送的badge数量。
   :form sound: 推送的声音。
-  :form service: 服务的ID，通常是1。
+  :form service: 服务的ID，通常是1。区别不同的推送服务，主要是在开发和生产环
+                 境对推送的service是区别开的。
   :form extra: 自定义的推送的内容，JSON格式。
   :form persis: 持久化，数据库中保留该次推送。
   :form no-persist: 不持久化，数据库不保留该次推送。
   :statuscode 201: 发送成功
 
+/api/message/
+-------------
 
-Contents:
+.. http:get:: /api/message/
+
+   获取最新的消息。
+
+   **输出**:
+
+   .. sourcecode:: http
+
+      HTTP/1.1 200 OK
+      Content-Type: application/json
+
+      [
+      ]
+
+   :query page: 分页，默认是0。
+   :statuscode 200: no error
+
+.. http:post:: /api/message/
+
+   发送消息。
+
+   :form text: 消息的文本内容。
+   :statuscode 201: 创建成功
+
+/api/chats/
+-----------
+
+.. http:get:: /api/chats/
+
+   获得聊天纪录。
+
+   **输出**:
+
+   .. sourcecode:: http
+
+      HTTP/1.1 200 OK
+      Content-Type: application/json
+
+      [
+        {
+          "chat_id": 1001,
+          "text": "Chat text 1001.",
+          "created_at": "",
+        },
+        {
+          "chat_id": 1002,
+          "text": "Chat text 1002.",
+          "created_at": "",
+        }
+      ]
+
+
+   :query page: 分页
+   :statuscode 200: 成功
+
+/api/chat/
+----------
+
+.. http:get:: /api/chat/
+
+   获得聊天内容，当聊天内容超过字数后，需要从这个资源里获得完整的内容。
+
+   :query id: chat ID
+   :statuscode 200: 成功
+
+.. http:post:: /api/chat/
+
+   发送聊天，成功以后会给该活动下所有成员发送聊天内容（除了发送者本人）。
+
+   :form activity_id: 活动ID
+   :form text: 聊天内容
+   :statuscode 201: 创建成功
+
+Release Notes
+-------------
 
 .. toctree::
    :maxdepth: 2
