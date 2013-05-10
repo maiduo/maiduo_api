@@ -7,6 +7,39 @@
 Maiduo HTTPAPI's documentation!
 ==========================================
 
+/api/user/
+------------
+
+.. http:post:: /api/user/
+
+   注册新用户 ［未实现］
+
+   :form username: 手机号码
+   :form password: 密码
+   :statuscode 201: 创建成功
+
+/api/authentication/
+--------------------
+
+.. http:post:: /api/authentication/
+
+   用户认证，获取用户的token。
+
+   **响应**:
+   .. sourcecode:: http:post
+
+      HTTP/1.1 201 OK
+      Content-Type: application/json
+
+      {
+          "access_token": "<access token>",
+          "refresh_token": "refresh_token"
+      }
+
+   :form username: 手机号码
+   :form password: 密码
+   :statuscode 201: 创建成功
+
 /aps/device/
 ------------
 
