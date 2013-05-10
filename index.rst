@@ -26,6 +26,7 @@ Maiduo HTTPAPI's documentation!
    用户认证，获取用户的token。
 
    **响应**:
+
    .. sourcecode:: http
 
       HTTP/1.1 201 OK
