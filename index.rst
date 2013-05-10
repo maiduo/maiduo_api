@@ -12,7 +12,9 @@ Maiduo HTTPAPI's documentation!
 
 .. http:post:: /api/user/
 
-   注册新用户 ［未实现］
+   注册新用户
+
+   新版API将会发送验证短信到用户手机，届时一个将会对同一手机的注册严格控制频率。
 
    :form username: 手机号码
    :form password: 密码
