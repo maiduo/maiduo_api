@@ -108,6 +108,42 @@ Maiduo HTTPAPI's documentation!
   :form no-persist: 不持久化，数据库不保留该次推送。
   :statuscode 201: 发送成功
 
+/api/activity/
+--------------
+
+.. http:post:: /api/activity/
+
+   创建活动。
+
+   **响应**:
+
+   .. sourcecode:: http
+
+      HTTP/1.1 200 OK
+      Content-Type: application/json
+
+      {
+        "id": 2,
+        "subject": "The second activity."
+        "owner": {
+          "username": "test",
+          "first_name": "",
+          "id": 1
+         },
+        "user": [
+          {
+            "username": "test",
+            "first_name": "",
+            "id": 1
+          }
+        ],
+      }
+
+   :form subject: 活动标题
+   :form access_token: Access token
+   :statuscode 200: 成功
+
+
 /api/message/
 -------------
 
@@ -133,6 +169,7 @@ Maiduo HTTPAPI's documentation!
    发送消息。
 
    :form text: 消息的文本内容。
+   :form access_token: Access token
    :statuscode 201: 创建成功
 
 /api/chats/
@@ -164,6 +201,7 @@ Maiduo HTTPAPI's documentation!
 
 
    :query page: 分页
+   :query access_token: Access token
    :statuscode 200: 成功
 
 /api/chat/
@@ -174,6 +212,7 @@ Maiduo HTTPAPI's documentation!
    获得聊天内容，当聊天内容超过字数后，需要从这个资源里获得完整的内容。
 
    :query id: chat ID
+   :query access_token: Access token
    :statuscode 200: 成功
 
 .. http:post:: /api/chat/
@@ -182,6 +221,7 @@ Maiduo HTTPAPI's documentation!
 
    :form activity_id: 活动ID
    :form text: 聊天内容
+   :form access_token: Access token
    :statuscode 201: 创建成功
 
 Release Notes
