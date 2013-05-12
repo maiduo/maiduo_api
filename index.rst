@@ -27,6 +27,8 @@ Maiduo HTTPAPI's documentation!
 
    用户认证，获取用户的token。
 
+   当存在device_token字段时，将登记设备用于接受消息推送。
+
    **响应**:
 
    .. sourcecode:: http
@@ -35,12 +37,19 @@ Maiduo HTTPAPI's documentation!
       Content-Type: application/json
 
       {
-          "access_token": "<access token>",
-          "refresh_token": "refresh_token"
+          "access_token": "a80ba5617b6c4ec6acae2475a9cbdaee",
+          "token_type": "bearer",
+          "user": {
+              "username": "test",
+              "first_name": "",
+              "id": 1
+          },
+          "refresh_token": "139881d1e4ad4fb18038287453f951a2"
       }
 
    :form username: 手机号码
    :form password: 密码
+   :form device_token: [可选] iOS设备Token
    :statuscode 201: 创建成功
 
 /aps/device/
