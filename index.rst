@@ -111,6 +111,40 @@ Maiduo HTTPAPI's documentation!
 /api/activity/
 --------------
 
+.. http:get:: /api/activity/
+
+   拉取活动列表。
+
+   **响应**:
+
+   .. sourcecode:: http
+
+      HTTP/1.1 200 OK
+      Content-Type: application/json
+
+      [
+        {
+          "id": 2,
+          "subject": "The second activity."
+          "owner": {
+            "username": "test",
+            "first_name": "",
+            "id": 1
+           },
+          "user": [
+            {
+              "username": "test",
+              "first_name": "",
+              "id": 1
+            }
+          ],
+        }
+      ]
+
+   :query page: 分页
+   :query access_token: Access token
+   :statuscode 200: 成功
+
 .. http:post:: /api/activity/
 
    创建活动。
