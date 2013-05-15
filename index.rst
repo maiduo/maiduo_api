@@ -147,7 +147,7 @@ Maiduo HTTPAPI's documentation!
 
 .. http:post:: /api/activity/
 
-   创建活动。
+   创建活动，当邀请的用户注册时自动成为活动的成员。
 
    **响应**:
 
@@ -174,6 +174,7 @@ Maiduo HTTPAPI's documentation!
       }
 
    :form subject: 活动标题
+   :form invitations:邀请朋友，格式是手机号码，半角逗号分割多个号码。
    :form access_token: Access token
    :statuscode 200: 成功
 
@@ -244,6 +245,35 @@ Maiduo HTTPAPI's documentation!
 .. http:get:: /api/chat/
 
    获得聊天内容，当聊天内容超过字数后，需要从这个资源里获得完整的内容。
+
+   **输出**:
+
+   .. sourcecode:: http
+
+      HTTP/1.1 200 OK
+      Content-Type: application/json
+
+      {
+          "id": 1,
+          "text": "hello",
+          "activity": {
+              "id": 1,
+              "subject": "Activity subject.",
+              "owner": [
+                  {
+                      "id": 1,
+                      "first_name": "CJ"
+                  }
+              ],
+              "users": [
+                  {
+                      "id": 1,
+                      "first_name: "CJ"
+                  }
+              ]
+          },
+          "created_at": ""
+      }
 
    :query id: chat ID
    :query access_token: Access token
